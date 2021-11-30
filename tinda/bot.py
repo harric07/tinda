@@ -39,6 +39,10 @@ class XXX:
             '10':'October',
             '11':'November',
             '12':'December'}
+        self.name = "An A.I. has no name"
+        self.age = "binary"
+        self.bias = "not 'utf-8'"
+        self.saying = "hor das aamb bhaldi?"
         self.task = pyttsx3.init()
         rate = self.task.getProperty('rate')
         self.task.setProperty('rate', 150)
