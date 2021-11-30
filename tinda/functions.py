@@ -42,8 +42,6 @@ except:
 
 
 
-
-
 #----------------------------------------------------------------------
 #   GLOBAL VARIABLES
 #----------------------------------------------------------------------
@@ -144,8 +142,10 @@ linksD = {"youtube":"https://www.youtube.com",
 def wiki_titles_search(x=str):
     y = wikipedia.search(x)
     for i in y:
-        print(i)
-    
+        return i
+
+wiki_titles_search("python")
+
 
 # wiki_titles_search('deep learning')
 
@@ -182,15 +182,14 @@ def get_text_from_html(x=''):
     return y.body.find('div', attrs={'class':'container'}).text
 
 
-#d: os
-# custom package installer 
+# helper setup function: not implemented yet.
 # ADDING MORE DEPENDENCIES
 
-def full_setup():
-    try:
-        os.system('pip install Pillow')
-    except Exception as e:
-        print(f"The following error occured: {e}")
+# def full_setup():
+#     try:
+#         os.system('pip install Pillow')
+#     except Exception as e:
+#         print(f"The following error occured: {e}")
 
 
 #-------------------------------------------------------------------
@@ -207,7 +206,7 @@ def search_google(query):
 
 #-------------------------------------------------------------------
 #-------------------------------------------------------------------
-
+# this function is for meenna: 'pip install meena'
 '''search youtube from voice input query and return result'''
 def search_google_voice():
     recognizer = speech_recognition.Recognizer()
@@ -226,7 +225,7 @@ def search_google_voice():
             done = True
             recognizer = speech_recognition.Recognizer()
 
-
+# this function is for meenna: 'pip install meena'
 def searchYoutube():
     recognizer = speech_recognition.Recognizer()
     bol("What are we looking for?")
@@ -314,7 +313,7 @@ def areaOfCircle(r):
 #----------------------------------------------------------------------
 
 # CAUTION: only works on windows.
-'''gets saved passwords NETSH'''
+'''gets saved passwords: NETSH'''
 def wifi_password():
     '''only works on windows'''
     print("Caution: this method only works on windows")
