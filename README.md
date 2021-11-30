@@ -6,20 +6,23 @@
 ### Installation:
 
 ```
-
-# to install it from pypi
-
 pip install tinda
-# or
-pip3 install tinda
 
 ```
 
 ## Usage:
 
 ```
-import * from tinda     # to import everything
-import XXX from tinda     # to import an object
+# to import everything from the library;
+
+import * from tinda     
+
+
+
+# to import an object 
+
+import XXX from tinda     
+
 
 def show_desktop(): 
     i = XXX()
@@ -29,6 +32,21 @@ def listen():
     x = XXX()
     x.listen() # this will call the listen function and display the string in console.
 
+assistant = XXX()
+assistant.say('string of whatever')
+
+search = YYY()
+search.image('string of query')
+'''
+this will open a new web browser window,
+searcing for the given query in string format.
+'''
+# the same works for Google, Github, Stackoverflow, Youtube, etc.
+
+'''
+The full list of functions
+and usage comming soon.
+'''
 
 
 ```
