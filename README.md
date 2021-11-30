@@ -1,19 +1,20 @@
 # tinda
+
 ### Buggy Sub-Alpha stage.
 #### Please Check back later, thankyou.
 
 
 
  
-# Modern wrapper for basic things. 
+## Modern wrapper for basic things. 
 
 
 
-# Usage:
+## Usage:
 
 ```
-Import * from tinda
-Import XXX from tinda
+import * from tinda     # to import everything
+import XXX from tinda     # to import an object
 
 def show_desktop(): 
     i = XXX()
