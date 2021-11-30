@@ -1,14 +1,20 @@
 # tinda
 
-### Buggy Sub-Alpha stage.
-#### Please Check back later, thankyou.
-
-
-
+######## Buggy Sub-Alpha stage, Please Check back later, thankyou.
  
 ## Modern wrapper for basic things. 
 
+### installation:
 
+```
+
+# to install it from pypi
+
+pip install tinda
+# or
+pip3 install tinda
+
+```
 
 ## Usage:
 
