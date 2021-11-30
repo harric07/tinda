@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: tinda
-Version: 0.0.15
+Version: 0.0.19
 Summary: BUGGY ALPHA STATE
 Home-page: UNKNOWN
 Author: (Hank Singh)
@@ -16,22 +16,43 @@ Description-Content-Type: text/markdown
 License-File: LICENSE.txt
 
 
-tinda
-# Please Check back later, thankyou.
+# tinda
+#### Buggy Sub-Alpha stage, Please Check back later, thankyou.
+ 
+## Modern wrapper for basic things. 
+
+### Installation:
+
+```
+
+# to install it from pypi
+
+pip install tinda
+# or
+pip3 install tinda
+
+```
+
+## Usage:
+
+```
+import * from tinda     # to import everything
+import XXX from tinda     # to import an object
+
+def show_desktop(): 
+    i = XXX()
+    i.showDesktop() # this will call the show desktop function
+
+def listen():
+    x = XXX()
+    x.listen() # this will call the listen function and display the string in console.
 
 
-#
-Buggy Sub-Alpha stage.
 
-
-
-
-# Usage:
-
+```
 
 
 Developed by:
-Hank Singh © 2021
-
+Harpreet Singh © 2021
 
 

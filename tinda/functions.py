@@ -108,7 +108,7 @@ functions_dict = {"bol":"Using pyttsx3, converts string to audio",
                 "wifi_password" : "netsh wlan show profiles key=clear",
                 "HandServo" : "d:pyfirmata, p:('port',pin,angle), servo movement class; zero, one, rotate, back_and_forth, new_angle",
                 "get_city" : "returns name of the current city through ip, no parameter required",
-                "wifi_password_help" : "only works on windows, does what it says"
+                "wifi_password_help" : "only works on windows, does what it says",
                 "wiki_search" : "from a given keyword, will return summary from wikipedia",
                 "google_image" : "from a given keyword, will open google images in webbroser"}
 

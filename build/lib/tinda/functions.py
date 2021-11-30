@@ -28,11 +28,12 @@ try:
     from datetime import date
     from bs4 import BeautifulSoup
     from datetime import datetime
-    print("flag_GREEN: Import positive.")
+    import wikipedia
+    from wikipedia.wikipedia import search
+    import webbrowser
+    print("'+'")
 except:
-    print("flag_CAUTION: some modules were not imported or installed properly!")
-
-
+    print("'-'")
 
 
 
@@ -50,13 +51,16 @@ OsName = platform.platform()
 
 fpfill = "##############################################################"
 
+# spacer - provide int value as parameter.
 def pspacer(x=1):
     for i in range(x):
         print("\n")
 
+# random number generator
 def rNG(x=0000, y=9999):
     random_number_generator = random.randint(x,y)
     return random_number_generator
+
 
 def executable(x=""):
     os.startfile(x)
@@ -77,9 +81,9 @@ def userInput():
 
 
 functions_dict = {"bol":"Using pyttsx3, converts string to audio",
-                "openLinkD": "opens web-browser from links_dict input key",
+                "open_link_dict": "opens web-browser from links_dict input key",
                 "speedTest":"looks for nearest server and tests the internet speed",
-                "botSkills": "lists all bot skills",
+                "Skills": "lists all bot skills",
                 "openLink": "input link as parameter to open in default web browser",
                 "rNG": "GENERATES A RANDOM NUMBER BETWEEN 0000,9999",
                 "linkDownload" : "input link as parameter to download in default directory",
@@ -89,10 +93,10 @@ functions_dict = {"bol":"Using pyttsx3, converts string to audio",
                 "imageRead" : "Shows image on screen: source required parameter",
                 "imageResize" : "(source, scale=50)",
                 "imageGray": "Shows grayscaled image of source",
-                "imageBlur" : "Shows blurrer image",
+                "imageBlur" : "Shows blurred image",
                 "videoRead" : "Shows video on screen from source",
                 "execuable" : "starts an executable file: input file path.extention of the file",
-                "audioToText" : "pip install SpeechRecognition",
+                "audioToText" : "dependency: pip install SpeechRecognition",
                 "playMusic" : "input music directory",
                 "Zoe" : "current if else voice bot version 0.0.0, MOVED TO SEPERATE REPO MEENA",
                 "pyPI" : "pypi upload instructuons, zoe knows by 'python index'",
@@ -101,10 +105,12 @@ functions_dict = {"bol":"Using pyttsx3, converts string to audio",
                 "aShutdown" : "aborts shutdown",
                 "showDesktop" : "shows desktop using pyautogui",
                 "open_cmd" : "if on windows system, opens command prompt",
-                "wifi_password" : "if on windows systems, gets ssid and password of available networks",
+                "wifi_password" : "netsh wlan show profiles key=clear",
                 "HandServo" : "d:pyfirmata, p:('port',pin,angle), servo movement class; zero, one, rotate, back_and_forth, new_angle",
                 "get_city" : "returns name of the current city through ip, no parameter required",
-                "wifi_password_help" : "only works on windows, does what it says"}
+                "wifi_password_help" : "only works on windows, does what it says",
+                "wiki_search" : "from a given keyword, will return summary from wikipedia",
+                "google_image" : "from a given keyword, will open google images in webbroser"}
 
 botSkillsD ={"botType":"needs string input of what to type, waits 3 seconds and will paste the input at the cusor position",
         "botDate":"#Z: print current date",
@@ -132,26 +138,42 @@ linksD = {"youtube":"https://www.youtube.com",
 #----------------------------------------------------------------------
 
 
-############################    TEST    ##############################
-######################################################################
+'''search wikipeadia titles from input query'''
+def wiki_titles_search(x=str):
+    y = wikipedia.search(x)
+    for i in y:
+        return i
 
-#-------------------------------------------------------------------
-# THESE ARE NOT IMPLEMENTED PROPERLY YET. (ignore for now)
-#-------------------------------------------------------------------
-# TEST GROUND STARTS HERE
-
-
+wiki_titles_search("python")
 
 
+# wiki_titles_search('deep learning')
 
-# BUT THEY WORK FOR WHAT THEY ARE ASSIGNED FOR, FOR NOW
-#
-#d: tqdm
-# progress bar
+def wiki_search(x=str, length=2):
+    y = wikipedia.search(x)
+    for i in y:
+        i = i.lower()
+        if i == x:
+            z = str(wikipedia.summary(i, length))
+            # p = (wikipedia.page(i).content)
+            # r = (wikipedia.page(i).references)
+            # c = (wikipedia.page(i).categories)
+            # l = (wikipedia.page(i).links)
+            # t = (wikipedia.page(i).title)
+            # print(f'/References are:{r}')
+            # print(f'Categories are: {c}')
+            # print(f'Links are:{l}')
+            # print(f'Title is:{t}')
+            return z
 
-def progBar():
-    for i in tqdm(range(100)):
-        time.sleep(0.01)
+# wiki_search('scarlett johansson')
+
+'''open google image from search query in webbrowser'''
+def google_image(x=str):
+    webbrowser.open(f'https://www.google.com/search?q={x}&tbm=isch')
+
+# google_image('scarlett johansson')
+
 
 '''extract text from html'''
 def get_text_from_html(x=''):
@@ -160,23 +182,35 @@ def get_text_from_html(x=''):
     return y.body.find('div', attrs={'class':'container'}).text
 
 
-
-
-
-
-#
-#d: os
-# custom package installer 
+# helper setup function: not implemented yet.
 # ADDING MORE DEPENDENCIES
 
-def tSetup():
-    os.system('pip install Pillow')
-    pass
+# def full_setup():
+#     try:
+#         os.system('pip install Pillow')
+#     except Exception as e:
+#         print(f"The following error occured: {e}")
 
 
-def searchGoogle():
-    global recognizer
-    bol("Keyword Please?")
+#-------------------------------------------------------------------
+#-------------------------------------------------------------------
+
+
+'''search google from query and return result'''
+def search_google(query):
+    try:
+        webbrowser.open_new_tab("https://www.google.com/search?q={}".format(query))
+    except Exception as e:
+        print(f"The following error occured: {e}")
+
+
+#-------------------------------------------------------------------
+#-------------------------------------------------------------------
+# this function is for meenna: 'pip install meena'
+'''search youtube from voice input query and return result'''
+def search_google_voice():
+    recognizer = speech_recognition.Recognizer()
+    bol("What are we looking for?")
     done = False
     while not done:
         try:
@@ -185,18 +219,16 @@ def searchGoogle():
                 audio =  recognizer.listen(mic)
                 keyword = recognizer.recognize_google(audio)
                 keyword = keyword.lower()
-                webbrowser.open_new_tab("https://www.google.com/search?q=" + keyword)
-                speaker.say("Roger")
-                speaker.runAndWait()
+                webbrowser.open_new_tab("https://www.youtube.com/results?search_query={}".format(keyword))
+                bol("Roger")
         except speech_recognition.UnknownValueError:
             done = True
             recognizer = speech_recognition.Recognizer()
 
-
+# this function is for meenna: 'pip install meena'
 def searchYoutube():
-    global recognizer
-    speaker.say("Keyword Please?")
-    speaker.runAndWait()
+    recognizer = speech_recognition.Recognizer()
+    bol("What are we looking for?")
     done = False
     while not done:
         try:
@@ -205,39 +237,11 @@ def searchYoutube():
                 audio =  recognizer.listen(mic)
                 keyword = recognizer.recognize_google(audio)
                 keyword = keyword.lower()
-                webbrowser.open_new_tab("https://www.youtube.com/results?search_query=" + keyword)
-                speaker.say("Roger")
-                speaker.runAndWait()
+                webbrowser.open_new_tab("https://www.youtube.com/results?search_query={}".format(keyword))
+                bol("Roger")
         except speech_recognition.UnknownValueError:
             done = True
             recognizer = speech_recognition.Recognizer()
-
-def add_todo():
-    global recognizer
-    speaker.say("What to do do you want to add?")
-    speaker.runAndWait()
-    done = False
-    while not done:
-        try:
-            with speech_recognition.Microphone() as mic:
-                recognizer.adjust_for_ambient_noise(mic, duration=0.2)
-                audio = recognizer.listen(mic)
-                item = recognizer.recognize__google(audio)
-                item = item.lower()
-                todo_list.append(item)
-                done=True
-                speaker.say(f"added {item} to to do list!")
-                speaker.runAndWait()
-        except speech_recognition.UnknownValueError:
-            recognizer = speech_recognition.Recognizer()
-            speaker.say("Audio Error")
-            speaker.runAndWait()
-
-def show_todos():
-    speaker.say("The items on your to do list are as following")
-    for item in list:
-        speaker.say(item)
-        speaker.runAndWait()
 
 
 def killChrome():
@@ -261,7 +265,6 @@ def coldWar():
 
 
 
-
 ''' Any polygon with number of sides as n, sum of interior angles = (n-2) * 180degrees, each angle = (n-2) * 180degrees / n '''
 #d: turtle
 class Polygon:
@@ -281,7 +284,6 @@ class Polygon:
             turtle.right(180-self.angle)
         turtle.done()
 
-
 #d: math
 square = Polygon(4, "Square")
 pentagon = Polygon(5, "Pentagon")
@@ -292,37 +294,26 @@ hexagon = Polygon(6, "Hexagon")
 # square.draw()
 # hexagon.draw()
 
-
-
-
-
 def volumeOfSphere(r):
     '''Returns the volume of a sphere with the radius r.'''
     vol = (4.0/3.0) * math.pi * r**3
     return vol
 
+def areaOfSphere(r):
+    '''Returns the area of a sphere with the radius r.'''
+    area = 4 * math.pi * r**2
+    return area
 
-
-
-
-
-############################    TEST    ##############################
-######################################################################
-
-# TEST GROUND FINISHED HERE
-#-------------------------------------------------------------------
-#-------------------------------------------------------------------
-
-
-
-
-
+def areaOfCircle(r):
+    '''Returns the area of a circle with the radius r.'''
+    area = math.pi * r**2
+    return area
 
 #----------------------------------------------------------------------
 #----------------------------------------------------------------------
 
 # CAUTION: only works on windows.
-'''gets passwords of all availale networks'''
+'''gets saved passwords: NETSH'''
 def wifi_password():
     '''only works on windows'''
     print("Caution: this method only works on windows")
@@ -351,27 +342,6 @@ def wifi_password():
             print(wifi_list[x])
     except:
         print("Error: this wasn't supposed to happen.")
-
-def get_password_help():
-    info = '''
-    This method only works on windows using command prompt
-    In command prompt type the following to check all available networks:
-    netsh wlan show profiles
-    that should list all available networks.    
-    to get the password of a network, type:
-    netsh wlan show profile name=name_of_the_network key=clear
-    wifi_password function lists does the same thing but lists all available ssid's and their passwords.
-    '''
-    print(info)
-    try:
-        bol(info)
-    except:
-        print("Error: bol function didn't work")
-
-#----------------------------------------------------------------------
-#----------------------------------------------------------------------
-
-
 
 #----------------------------------------------------------------------
 #----------------------------------------------------------------------
@@ -999,6 +969,7 @@ def detectHand(x=""):
 #----------------------------------------------------------------------
 #----------------------------------------------------------------------
 
+# pip install meena (if else VI named Zoe)
 def audioToText():
     listener = speech_recognition.Recognizer()
     with speech_recognition.Microphone() as source:
@@ -1032,9 +1003,13 @@ def pyPI():
     in that folder name __init__.py file with import statement linked to the code,
     and also the code file,
     outside this folder in the basefolder make licence, readme, and setup.py file,
-    one everything is done, in CMD, run,
+    once everything is done, in CMD, run,
     for exact code check info on the screen\n
-    python sdist bdist_wheel,
+    change directory to the base folder
+    you'll need to install pip, wheel, twine and setuptools,
+    once all that i sdone, run the following command\n
+    python setup.py bdist_wheel
+    python setup.py sdist bdist_wheel,
     twine upload dist\*,
     here you'll need your username and password,
     once all this is done correctly, the upload should have been done.
@@ -1124,7 +1099,7 @@ def KILLALL(shutdown_time: int = 0):
 
 
 ############# ALL FUNCTION LISTED THROUGH FUNCTION HELPER FUNCTIONS ###############
-############# ALL FUNCTION LISTED THROUGH FUNCTION HELPER FUNCTIONS ###############
+
 def usage():
     print(fpfill)
     print("     All functions are listed below, use as you may.")
@@ -1169,7 +1144,8 @@ def bot():
 
 
 if __name__ == '__main__':
-    bot()
+    # bot()
+    print("'?'")
 
 #----------------------------------------------------------------------
 #----------------------------------------------------------------------
