@@ -1,17 +1,33 @@
-tinda
-# Please Check back later, thankyou.
+# tinda
+### Buggy Sub-Alpha stage.
+#### Please Check back later, thankyou.
 
 
-#
-Buggy Sub-Alpha stage.
 
+ 
+# Modern wrapper for basic things. 
 
 
 
 # Usage:
 
+```
+Import * from tinda
+Import XXX from tinda
+
+def show_desktop(): 
+    i = XXX()
+    i.showDesktop() # this will call the show desktop function
+
+def listen():
+    x = XXX()
+    x.listen() # this will call the listen function and display the string in console.
+
+
+
+```
 
 
 Developed by:
-Hank Singh © 2021
+Harpreet Singh © 2021
 
