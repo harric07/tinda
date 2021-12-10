@@ -13,40 +13,30 @@ pip install tinda
 ## Usage:
 
 ```
-# to import everything from the library;
+from tinda import XXX   
 
-import * from tinda     
-
-
-
-# to import an object 
-
-import XXX from tinda     
-
-
-def show_desktop(): 
-    i = XXX()
-    i.showDesktop() # this will call the show desktop function
-
-def listen():
-    x = XXX()
-    x.listen() # this will call the listen function and display the string in console.
 
 assistant = XXX()
+
 assistant.say('string of whatever')
 
-search = YYY()
-search.image('string of query')
-'''
-this will open a new web browser window,
-searcing for the given query in string format.
-'''
-# the same works for Google, Github, Stackoverflow, Youtube, etc.
+assistant.image(query) #google image search of the query string
 
-'''
-The full list of functions
-and usage comming soon.
-'''
+# the same works for Google, Github, Stackoverflow, Youtube, etc.
+assistant.google(query)
+assistant.stackoverflow(query) 
+
+assitant.getIp() # returns private and public ip
+
+assiatnt.getLocation() # returns location data
+
+assistant.time() 
+assistant.date()
+
+assistant.speedtest() #returns internet speed test results
+
+
+# full list comming soon.
 
 
 ```

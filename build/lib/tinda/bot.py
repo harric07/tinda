@@ -1,22 +1,23 @@
 
 # dependencies:
 
-
-
-
-
-from urllib.parse import _NetlocResultMixinBase
+import speedtest
+import socket
+import requests
+import threading
 import pyttsx3 # text to speech
 import random # random.randint(1, 10)
-import os # os.system 
+import os
 import pynput # keyboard and mouse utility
 import time
 from datetime import datetime
 from datetime import date
 import pyautogui # mouse and keyboard utility
 import speech_recognition  # pip install SpeechRecognition (working currently py -3.9)
-import webbrowser as webb # webbrowser.open("https://www.google.com")
+import webbrowser # webbrowser.open("https://www.google.com")
 import wikipedia # pip install wikipedia
+
+
 
 class XXX:
     def __init__(self):
@@ -39,13 +40,22 @@ class XXX:
             '10':'October',
             '11':'November',
             '12':'December'}
+        # self.info
+        self.name = "An A.I. has no name"
+        self.age = "binary"
+        self.bias = "not 'utf-8'"
+        self.saying = "hor das aamb bhaldi?"
+        # self.skills
+        # text to speech
         self.task = pyttsx3.init()
-        rate = self.task.getProperty('rate')
+        self.rate = self.task.getProperty('rate')
         self.task.setProperty('rate', 150)
-        volume = self.task.getProperty('volume')
+        self.volume = self.task.getProperty('volume')
         self.task.setProperty('volume', 1)
         voices = self.task.getProperty('voices')
         self.task.setProperty('voice', voices[1].id)
+        # webbrowser
+        self.b = webbrowser
     def say(self, audio):
         self.task.say(audio)
         self.task.runAndWait()
@@ -111,15 +121,25 @@ class XXX:
     def listen(self):
         x = speech_recognition.Recognizer()
         with speech_recognition.Microphone() as source:
-            x.adjust_for_ambient_noise(source, duration=0.2)
+            x.adjust_for_ambient_noise(source)
             y = x.listen(source)
             try:
                 r = x.recognize_google(y)
-                print(f"#ZOE: #I heard: {r}")
+                print(f"#ZOE: #I heard: '{r}'")
             except speech_recognition.UnknownValueError:
                 x = speech_recognition.Recognizer()
-                return "None"
-            return r
+                return "unknown_value_error"
+            except speech_recognition.RequestError as e:
+                return "request_error"
+        return r
+    @staticmethod
+    def listenOnce():
+        r = speech_recognition.Recognizer()
+        with speech_recognition.Microphone() as source:
+            r.adjust_for_ambient_noise(source)
+            x = r.listen(source)
+            data = r.recognize_google(x)
+            return data
     def pyaudioWindowInstall(self):
         os.system("pip install pipwin")
         os.system("pipwin install pyaudio")
@@ -137,10 +157,6 @@ class XXX:
             os.system("shutdown /a")
         except:
             return "Negavite"
-
-class YYY: # search related functions
-    def __init__(self):
-        self.b = webb
     def open(self, url): # webbrowser open
         self.b.open(url)
     def wiki(self, text): # wikipedia search
@@ -158,6 +174,107 @@ class YYY: # search related functions
         self.b.open(f'https://stackoverflow.com/search?q={text}')
     def github(self, text): # github search
         self.b.open(f'https://github.com/search?q={text}')
+    @staticmethod
+    def getIp(): # get ip address
+        localIP = socket.gethostbyname(socket.gethostname())
+        publicIP = requests.get('http://ip.42.pl/raw').text
+        return f"Local IP: '{localIP}', Public IP: '{publicIP}'"
+    @staticmethod
+    def getLocation(): # get location
+        x = requests.get('http://ip-api.com/json/')
+        x = x.json()
+        return f"City: '{x['city']}', Region: '{x['regionName']}', Country: '{x['country']}, Timezone: '{x['timezone']}', Service Provider: '{x['isp']}'"
+    @staticmethod
+    def speedtest(): # internet speed test
+        x = speedtest.Speedtest()
+        x.get_best_server()
+        t = x.get_best_server()
+        info = f" Server located in: {t['country']}, {t['sponsor']}, {t['name']}"
+        print(info)
+        down = x.download()
+        up = x.upload()
+        ping = x.results.ping
+        r = f"Download: '{down/1024/1024 : .2f}' Mbps, Upload: '{up/1024/1024 : .2f}' Mbps, Ping: '{ping}' ms"
+        return r
+
+
+class ZOE:
+    def __init__(self):
+        self.name = "ZOE"
+        self.age = "BINARY"
+        self.bias = "not 'utf-8'"
+        self.i = XXX()
+    def creep(self):
+        for i in range(3):
+            print('\n')
+        print("ZOE: Initiating creep protocol.")
+        self.i.say("Initiating creep protocol.")
+        for i in range(2):
+            print('\n')
+        print(self.i.greet())
+        self.i.say(self.i.greet())
+        print(self.i.date())
+        print(f'The time is: {self.i.time()}')
+        self.i.say(f'The time is: {self.i.time()}')
+        for i in range(3):
+            print('\n')
+        print("ZOE: On Standby, waiting for further instructions.")
+        self.i.say("On Standby, waiting for further instructions.")
+        while True:
+            x = self.i.listen().lower()
+            if x == 0:
+                continue
+            if "zoe" in x:
+                print(f"That is one of my aliases, {x}")
+            if "what time" in x:
+                print(f'The time is: {self.i.time()}')
+                self.i.say(f'The time is: {self.i.time()}')
+            if "stop" in x:
+                print("ZOE: Terminating creep protocol.")
+                self.i.say("Bye.")
+                break
+            if "what date" in x:
+                print(f'The date is: {self.i.date()}')
+                self.i.say(f'{self.i.date()}')
+            if "get mouse position" in x:
+                print(self.i.mousePosition())
+                self.i.say("Roger that!")
+            if "left-click" in x:
+                self.i.leftClick()
+                self.i.say("Roger that!")
+            if "right-click" in x:
+                self.i.rightClick()
+                self.i.say("pew pew!")
+            if "show desktop" in x:
+                self.i.showDesktop()
+                self.i.say("jooosh!")
+            if "open browser" in x:
+                self.i.open("www.google.com")
+                self.i.say("right up!")
+            if "image search" in x:
+                self.i.say("What do you want to search for?")
+                query = self.i.listenOnce()
+                self.i.image(query)
+                self.i.say("Roger that!")
+            if "google search" in x:
+                self.i.say("What are we looking for?")
+                query = self.i.listenOnce()
+                self.i.google(query)
+            if "youtube search" in x:
+                self.i.say("What are we looking for?")
+                query = self.i.listenOnce()
+                self.i.youtube(query)
+            if "stackoverflow search" in x:
+                self.i.say("What are we looking for?")
+                query = self.i.listenOnce()
+                self.i.stackoverflow(query)
+            if "github search" in x:
+                self.i.say("What are we looking for?")
+                query = self.i.listenOnce()
+                self.i.github(query)
+            
+
+
 
 
 

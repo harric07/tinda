@@ -14,4 +14,3 @@ opencv-python
 tqdm
 bs4
 SpeechRecognition
-sockets

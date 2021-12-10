@@ -59,7 +59,6 @@ class GoogleImageScraper():
         self.max_resolution = max_resolution
         self.saved_extension = "jpg"
         self.valid_extensions = ["jpg","png","jpeg"]
-        
     def find_image_urls(self):
         """
             This function search and return a list of image urls based on the search key.
@@ -113,11 +112,9 @@ class GoogleImageScraper():
                 time.sleep(5)
             except Exception:  
                 time.sleep(1)
-        
         self.driver.quit()
         print("[INFO] Google search ended")
         return image_urls
-
     def save_images(self,image_urls):
         #save images into file directory
         """
@@ -172,4 +169,4 @@ for search_key in search_keys:
     image_scrapper.save_images(image_urls)
 
 #Release resources    
-del image_scrapper
+print("[INFO] GoogleImageScraper is done.")

@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: tinda
-Version: 0.0.19
+Version: 0.0.20
 Summary: BUGGY ALPHA STATE
 Home-page: UNKNOWN
 Author: (Hank Singh)
@@ -24,29 +24,37 @@ License-File: LICENSE.txt
 ### Installation:
 
 ```
-
-# to install it from pypi
-
 pip install tinda
-# or
-pip3 install tinda
 
 ```
 
 ## Usage:
 
 ```
-import * from tinda     # to import everything
-import XXX from tinda     # to import an object
+from tinda import XXX   
 
-def show_desktop(): 
-    i = XXX()
-    i.showDesktop() # this will call the show desktop function
 
-def listen():
-    x = XXX()
-    x.listen() # this will call the listen function and display the string in console.
+assistant = XXX()
 
+assistant.say('string of whatever')
+
+assistant.image(query) #google image search of the query string
+
+# the same works for Google, Github, Stackoverflow, Youtube, etc.
+assistant.google(query)
+assistant.stackoverflow(query) 
+
+assitant.getIp() # returns private and public ip
+
+assiatnt.getLocation() # returns location data
+
+assistant.time() 
+assistant.date()
+
+assistant.speedtest() #returns internet speed test results
+
+
+# full list comming soon.
 
 
 ```

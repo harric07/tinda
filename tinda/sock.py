@@ -8,6 +8,8 @@ import cv2
 import pyautogui
 import numpy as np  
 import pyaudio
+import tkinter as tk
+import requests
 
 
 
@@ -260,10 +262,6 @@ class ScreenSharingClient(StreamClient):
         return frame
 
 
-import tkinter as tk
-import requests
-import socket
-
 # get local ip address
 def get_ip():
     # os.system('ifconfig')
@@ -312,19 +310,7 @@ def audioStream():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-if __name__ == '__main__':
-    # GUI
+def tkUi():
     window = tk.Tk()
     window.title("Video Call")
     window.geometry('300x200')
@@ -341,6 +327,28 @@ if __name__ == '__main__':
     btn_audio = tk.Button(window, text="Start Audio Stream", width=50, command=audioStream)
     btn_audio.pack(anchor=tk.CENTER, expand=True)
     window.mainloop()
+
+
+
+# to create a server
+
+
+
+
+
+
+if __name__ == '__main__':
+    # tkUi()
+    # localIP = socket.gethostbyname(socket.gethostname())
+    # streaming_server_port = 9999
+    # server = StreamingServer(localIP, streaming_server_port)
+    # receiver_port = 9998
+    # receiver = AudioIn(localIP, receiver_port)
+    # thread_one = threading.Thread(target=server.start)
+    # thread_two = threading.Thread(target=receiver.start)
+    # thread_one.start()
+    # thread_two.start()
+    
 
 # other end needs to be on different ports for this to work.
 # if you want to use the same port for both, you need to use a different ip address.
