@@ -5,8 +5,6 @@ tinda/__init__.py
 tinda/bot.py
 tinda/functions.py
 tinda/sock.py
-tinda/test.py
-tinda/zzz.py
 tinda.egg-info/PKG-INFO
 tinda.egg-info/SOURCES.txt
 tinda.egg-info/dependency_links.txt

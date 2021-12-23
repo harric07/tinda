@@ -1,6 +1,6 @@
 
 # dependencies:
-
+import cv2
 import speedtest
 import socket
 import requests
@@ -16,6 +16,8 @@ import pyautogui # mouse and keyboard utility
 import speech_recognition  # pip install SpeechRecognition (working currently py -3.9)
 import webbrowser # webbrowser.open("https://www.google.com")
 import wikipedia # pip install wikipedia
+from bs4 import BeautifulSoup
+import numpy
 
 
 
@@ -98,7 +100,8 @@ class XXX:
         day = str(today.day)
         month = str(today.month)
         year = str(today.year)
-        x= (f"Today is: {self.days[weekday]}, {day} {self.months[month]}, {year}.")
+        #x= (f"Today is: {self.days[weekday]}, {day} {self.months[month]}, {year}.")
+        x = {'weekday': self.days[weekday], 'date': day, 'month': self.months[month], 'year': year}
         return x
     def greet(self):
         x = datetime.now().hour
@@ -128,9 +131,9 @@ class XXX:
                 print(f"#ZOE: #I heard: '{r}'")
             except speech_recognition.UnknownValueError:
                 x = speech_recognition.Recognizer()
-                return "unknown_value_error"
+                r = XXX.listen(self)
             except speech_recognition.RequestError as e:
-                return "request_error"
+                r = XXX.listen(self)
         return r
     @staticmethod
     def listenOnce():
@@ -140,7 +143,7 @@ class XXX:
             x = r.listen(source)
             data = r.recognize_google(x)
             return data
-    def pyaudioWindowInstall(self):
+    def pyaudioWindowsInstall(self):
         os.system("pip install pipwin")
         os.system("pipwin install pyaudio")
         os.system("python -m pip install pyaudio")
@@ -196,6 +199,81 @@ class XXX:
         ping = x.results.ping
         r = f"Download: '{down/1024/1024 : .2f}' Mbps, Upload: '{up/1024/1024 : .2f}' Mbps, Ping: '{ping}' ms"
         return r
+    @staticmethod
+    def getLinks(url): # get links from url
+        x = requests.get(url)
+        s = BeautifulSoup(x.text, "html.parser")
+        l = []
+        for i in s.find_all("a"):
+            l.append(i.get("href"))
+        return l
+    @staticmethod
+    def textToMorse(text):
+        text = text.lower()
+        x = {
+        "a": ".-",
+        "b": "-...",
+        "c": "-.-.",
+        "d": "-..",
+        "e": ".",
+        "f": "..-.",
+        "g": ".-",
+        "h": "....",
+        "i": "..",
+        "j": ".---",
+        "k": "-.-",
+        "l": ".-..",
+        "m": "--",
+        "n": "-.",
+        "o": "---",
+        "p": ".--.",
+        "q": "--.-",
+        "r": ".-.",
+        "s": "...",
+        "t": "-",
+        "u": "..-",
+        "v": "...-",
+        "w": ".--",
+        "x": "-..-",
+        "y": "-.--",
+        "z": "--..",
+        " ": " ",}
+        o = []
+        for i in range(len(text)):
+            if text[i] in x.keys():
+                o.append(x.get(text[i]))
+            else:
+                o.append(text[i])
+        return o
+    @staticmethod
+    def recordScreen():
+        resoultion = (1920, 1080)
+        codec = cv2.VideoWriter_fourcc(*'XVID')
+        file = cv2.VideoWriter('screen_capture.avi', codec, 20.0, resoultion)
+        fps = 120
+        xx = 0
+        done = False
+        print("Screen recording initiated")
+        print("Press 'Ctrl+C' to stop recording.")
+        while not done:
+            x = time.time() - xx
+            image = pyautogui.screenshot()
+            if x > 1.0/fps:
+                xx = time.time()
+                frame = numpy.array(image)
+                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                file.write(frame)
+                if cv2.waitKey(1) & 0xFF == ord('q'):
+                    done = True
+                    cv2.destroyAllWindows()
+                    break
+        file.release()
+
+
+
+
+
+
 
 
 class ZOE:
@@ -272,7 +350,17 @@ class ZOE:
                 self.i.say("What are we looking for?")
                 query = self.i.listenOnce()
                 self.i.github(query)
-            
+            if "what ip" in x:
+                print(self.i.getIp())
+                self.i.say(self.i.getIp())
+            if "what location" in x:
+                print(self.i.getLocation())
+                self.i.say(self.i.getLocation())
+            if "internet speed test" in x:
+                print("ZOE: Please wait, this could take a moment.")
+                self.i.say("please wait, this could take a moment.")
+                self.i.speedtest()
+
 
 
 

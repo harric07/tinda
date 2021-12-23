@@ -1,6 +1,16 @@
 #----------------------------------------------------------------------
 ##################    MODULES     #####################################
 #----------------------------------------------------------------------
+
+
+'''
+BUGGY ALPHA STAGE
+
+PLEASE IGNORE THE MESS BELOW
+
+'''
+
+
 try:
     import os
     import sys
@@ -31,9 +41,9 @@ try:
     import wikipedia
     from wikipedia.wikipedia import search
     import webbrowser
-    print("'+'")
-except:
-    print("'-'")
+    print("+")
+except Exception as e:
+    print(f"'-' {e}")
 
 
 
