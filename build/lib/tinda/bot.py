@@ -18,7 +18,9 @@ import webbrowser # webbrowser.open("https://www.google.com")
 import wikipedia # pip install wikipedia
 from bs4 import BeautifulSoup
 import numpy
-from setuptools import setup
+
+
+
 
 
 class XXX:
@@ -361,4 +363,4 @@ class ZOE:
 
 
 if __name__ == '__main__':
-    print("'version': '0.0.29'")
+    print("'version': '0.0.30'")
