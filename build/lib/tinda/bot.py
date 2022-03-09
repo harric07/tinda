@@ -18,7 +18,7 @@ import webbrowser # webbrowser.open("https://www.google.com")
 import wikipedia # pip install wikipedia
 from bs4 import BeautifulSoup
 import numpy
-
+from setuptools import setup
 
 
 class XXX:
@@ -43,10 +43,8 @@ class XXX:
             '11':'November',
             '12':'December'}
         # self.info
-        self.name = "An A.I. has no name"
-        self.age = "binary"
         self.bias = "not 'utf-8'"
-        self.saying = "hor das aamb bhaldi?"
+        self.what = "hor das aamb bhaldi?"
         # self.skills
         # text to speech
         self.task = pyttsx3.init()
@@ -128,7 +126,7 @@ class XXX:
             y = x.listen(source)
             try:
                 r = x.recognize_google(y)
-                print(f"#ZOE: #I heard: '{r}'")
+                print(f"I heard: '{r}'")
             except speech_recognition.UnknownValueError:
                 x = speech_recognition.Recognizer()
                 r = XXX.listen(self)
@@ -150,7 +148,7 @@ class XXX:
     def playMusic(self, path):
         x = os.listdir(path)
         os.startfile(os.path.join(path, random.choice(x)))
-    def showdown(self):
+    def shutdown(self):
         try:
             os.system("shutdown /s /t 1")
         except:
@@ -188,7 +186,7 @@ class XXX:
         x = x.json()
         return f"City: '{x['city']}', Region: '{x['regionName']}', Country: '{x['country']}, Timezone: '{x['timezone']}', Service Provider: '{x['isp']}'"
     @staticmethod
-    def speedtest(): # internet speed test
+    def speedTest(): # internet speed test
         x = speedtest.Speedtest()
         x.get_best_server()
         t = x.get_best_server()
@@ -278,9 +276,6 @@ class XXX:
 
 class ZOE:
     def __init__(self):
-        self.name = "ZOE"
-        self.age = "BINARY"
-        self.bias = "not 'utf-8'"
         self.i = XXX()
     def creep(self):
         for i in range(3):
@@ -296,8 +291,6 @@ class ZOE:
         self.i.say(f'The time is: {self.i.time()}')
         for i in range(3):
             print('\n')
-        print("ZOE: On Standby, waiting for further instructions.")
-        self.i.say("On Standby, waiting for further instructions.")
         while True:
             x = self.i.listen().lower()
             if x == 0:
@@ -359,7 +352,7 @@ class ZOE:
             if "internet speed test" in x:
                 print("ZOE: Please wait, this could take a moment.")
                 self.i.say("please wait, this could take a moment.")
-                self.i.speedtest()
+                self.i.speedTest()
 
 
 
@@ -367,3 +360,5 @@ class ZOE:
 
 
 
+if __name__ == '__main__':
+    print("'version': '0.0.29'")

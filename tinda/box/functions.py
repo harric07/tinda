@@ -41,6 +41,8 @@ try:
     import wikipedia
     from wikipedia.wikipedia import search
     import webbrowser
+    from pyfirmata import Arduino, SERVO
+    from time import sleep
     print("+")
 except Exception as e:
     print(f"'-' {e}")
@@ -360,8 +362,7 @@ def wifi_password():
 '''CURRENTLY SETUP TO MOVE BACK AND FORTH UNTIL KEYBOARD INTERRUPTED'''
 # required (port, pin number, angle)
 #example: move_servo("COM4", 9, 90)
-from pyfirmata import Arduino, SERVO
-from time import sleep
+
 
 class HandServo:
     def __init__(self, port, pin, angle):
@@ -1018,9 +1019,9 @@ def pyPI():
     change directory to the base folder
     you'll need to install pip, wheel, twine and setuptools,
     once all that i sdone, run the following command\n
-    python setup.py bdist_wheel
-    python setup.py sdist bdist_wheel,
-    twine upload dist\*,
+    PYTHON SETUP.PY BDIST_WHEEL
+    PYTHON SETUP.PY SDIST BDIST_WHEEL,
+    TWINE UPLOAD DIST\*,
     here you'll need your username and password,
     once all this is done correctly, the upload should have been done.
     """
@@ -1153,9 +1154,8 @@ def bot():
     bol('bye now')
 
 
-if __name__ == '__main__':
-    # bot()
-    print("'?'")
+
+
 
 #----------------------------------------------------------------------
 #----------------------------------------------------------------------

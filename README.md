@@ -15,25 +15,52 @@ pip install tinda
 ```
 from tinda import XXX   
 
+'''
+When a class defines an __init__() method,
+class instantiation automatically invokes __init__() 
+for the newly-created class instance. 
+So in this example, a new, 
+initialized instance can be obtained by:
+'''
 
-assistant = XXX()
+x = XXX()
 
-assistant.say('string of whatever') 
+'''
+Method Objects:
+Usually, a method is called right after it is bound:
+For example,
+'''
 
-assistant.image(query) #google image search of the query string
+x.say('string of whatever') 
+
+#google image search of the query string
+x.image(query) 
 
 # the same works for Google, Github, Stackoverflow, Youtube, etc.
-assistant.google(query)
-assistant.stackoverflow(query) 
+x.google(query)
+x.stackoverflow(query) 
 
-assitant.getIp() # returns private and public ip
 
-assiatnt.getLocation() # returns location data
+# returns private and public ip.
+x.getIp() 
 
-assistant.time() 
-assistant.date()
-asssistant.recordScreen() # saves output file in root directory.
-assistant.speedtest() # returns internet speed test results.
+# returns location data.
+x.getLocation() 
+
+# other methods:
+x.time() 
+x.date()
+x.shutdown()
+x.mousePosition()
+x.goToPosition()
+x.leftClick()
+x.rightClick()
+x.showDesktop()
+
+x.recordScreen() # saves output file in root directory.
+x.speedTest() # returns internet speed test results.
+x.getLinks() # takes in url and returns all links.
+x.textToMorse() # string to morse code.
 ```
 
 ```

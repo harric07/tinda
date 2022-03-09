@@ -7,7 +7,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
 
-VERSION = '0.0.26'
+VERSION = '0.0.29'
 DESCRIPTION = "BUGGY ALPHA STATE"
 LONG_DESCRIPTION = """Nope.
                     """
@@ -22,7 +22,7 @@ setup(
     long_description_content_type="text/markdown",
     long_description=long_description,
     packages=find_packages(),
-    install_requires=['numpy', 'argparse', 'wave', 'pyautogui', 'mediapipe', 'tqdm', 'opencv-python', 'twine', 'pyttsx3', 'pyaudio', 'speedtest-cli', 'pynput', 'datetime', 'bs4', 'SpeechRecognition' ],
+    install_requires=['numpy', 'argparse', 'wave', 'pyautogui', 'mediapipe', 'tqdm', 'opencv-python', 'twine', 'pyttsx3', 'pyaudio', 'speedtest-cli', 'pynput', 'datetime', 'bs4', 'SpeechRecognition'],
     keywords=['python'],
     classifiers=[
         "Development Status :: 1 - Planning",

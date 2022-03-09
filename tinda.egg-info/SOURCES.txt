@@ -3,7 +3,6 @@ README.md
 setup.py
 tinda/__init__.py
 tinda/bot.py
-tinda/functions.py
 tinda/sock.py
 tinda.egg-info/PKG-INFO
 tinda.egg-info/SOURCES.txt
