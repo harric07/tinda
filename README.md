@@ -1,5 +1,5 @@
 # tinda
-#### Buggy alpha stage, Please check back later, thankyou.
+#### Buggy alpha stage.
  
 ## Modern wrapper for basic things. 
 
